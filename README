@@ -1,0 +1,59 @@
+🚀 Moqui Training Component: Party & Security Logic
+
+This component contains the custom business logic and data structures for the Moqui Training assignment. It extends the Moqui framework to handle specialized Party (Person/Organization) data and restricted administrative access.
+📂 Component Structure
+
+    entity/: Contains PartyEntities.xml defining the relational database schema.
+
+    data/:
+
+        PartyDemoData.xml: Seed data for Persons (Bruce Wayne) and Organizations (Wayne Enterprises).
+
+        TrainingSecurityData.xml: Security permissions and user group mappings for the SQL Runner.
+
+🛠️ Implemented Features
+1. Data Modeling (The Party Pattern)
+
+Implemented the Universal Data Pattern to create complex relationships between different entities:
+
+    Person & PartyGroup: Created distinct records for individuals and companies.
+
+    Contact Mechanisms: Configured ContactMech records to link phone numbers and emails to specific parties.
+
+    Relationship Mapping: Used PartyContactMech to bridge the gap between people and their contact info.
+
+2. Security Configuration
+
+Established a robust security layer to protect sensitive framework tools:
+
+    Artifact Groups: Defined which screens (like the SQL Runner) are restricted.
+
+    User Group Mapping: Linked the ADMIN user group to the necessary permissions.
+
+    Access Control: Verified that only authorized users can execute raw SQL queries.
+
+🚦 How to Test
+
+To see this component in action within the Moqui environment:
+
+    Load the Data:
+    Bash
+
+./gradlew load -Ptypes=seed,demo
+
+Verify via SQL Runner:
+Log in as john.doe / moqui and run:
+SQL
+
+    SELECT * FROM PARTY_GROUP WHERE GROUP_NAME LIKE 'Wayne%';
+
+How to add this to your Repo:
+
+    Save this text as README.md inside runtime/component/moqui-training/.
+
+    Go to your terminal and run:
+    Bash
+
+git add runtime/component/moqui-training/README.md
+git commit -m "docs: add README for the training component"
+git push origin main
